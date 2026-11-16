@@ -35,9 +35,11 @@ export async function verifySession() {
   if (!isLoggedIn()) return null
   try {
     const me = await getMe()
-    if (me?.id) {
-      saveAdmin(me)
-      return { admin: me }
+    // /api/auth/me mengembalikan payload JWT: { sub, username, display_name, iat, exp }
+    if (me?.sub || me?.username) {
+      const admin = { id: me.sub, username: me.username, display_name: me.display_name }
+      saveAdmin(admin)
+      return { admin }
     }
   } catch {
     // token invalid / expired

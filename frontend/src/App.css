@@ -441,6 +441,21 @@
   margin-bottom: 4px;
 }
 
+.success-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.success-actions .whatsapp-button.MuiButton-root,
+.success-actions .order-again-button.MuiButton-root {
+  flex: 1;
+  min-width: 140px;
+  margin-bottom: 0;
+}
+
 .admin-contact {
   margin: 12px 0 20px;
 }

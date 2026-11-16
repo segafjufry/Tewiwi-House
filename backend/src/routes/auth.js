@@ -24,7 +24,10 @@ export default function authRouter(db) {
 
   // GET /api/auth/me  → info admin yang sedang login
   r.get('/me', adminOnly, (req, res) => {
-    res.json({ data: req.admin ?? { note: 'login via API key (no profile)' } });
+    const admin = req.admin
+    if (!admin) return res.json({ data: { note: 'login via API key (no profile)' } })
+    // Normalisasi: pastikan field `id` selalu ada (JWT menyimpannya sebagai `sub`)
+    res.json({ data: { id: admin.sub ?? admin.id, username: admin.username, display_name: admin.display_name } })
   });
 
   // GET /api/auth/admins  → daftar semua admin

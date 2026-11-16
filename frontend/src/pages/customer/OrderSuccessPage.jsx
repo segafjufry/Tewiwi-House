@@ -125,27 +125,29 @@ function OrderSuccessPage() {
                 Setelah transfer, kirim bukti transfer ke WhatsApp admin. Lampirkan foto bukti di
                 chat yang terbuka.
               </p>
-              <Button
-                component={payment.whatsapp_url ? 'a' : 'button'}
-                href={payment.whatsapp_url || undefined}
-                target={payment.whatsapp_url ? '_blank' : undefined}
-                rel={payment.whatsapp_url ? 'noreferrer' : undefined}
-                variant="contained"
-                color="primary"
-                disabled={!payment.whatsapp_url}
-                className="whatsapp-button"
-              >
-                {payment.whatsapp_url ? 'Kirim bukti via WhatsApp' : 'WhatsApp admin belum diatur'}
-              </Button>
+              <div className="success-actions">
+                <Button
+                  component={payment.whatsapp_url ? 'a' : 'button'}
+                  href={payment.whatsapp_url || undefined}
+                  target={payment.whatsapp_url ? '_blank' : undefined}
+                  rel={payment.whatsapp_url ? 'noreferrer' : undefined}
+                  variant="contained"
+                  color="primary"
+                  disabled={!payment.whatsapp_url}
+                  className="whatsapp-button"
+                >
+                  {payment.whatsapp_url ? 'Kirim bukti via WhatsApp' : 'WhatsApp admin belum diatur'}
+                </Button>
+                <Button component={Link} to="/" variant="contained" className="order-again-button">
+                  Pesan lagi
+                </Button>
+              </div>
             </>
           ) : (
             <p className="muted">
               Info pembayaran akan dikirim admin. Lacak pesananmu untuk melihat status.
             </p>
           )}
-          <Button component={Link} to="/" variant="contained" className="order-again-button">
-            Pesan lagi
-          </Button>
         </Paper>
       </div>
     </main>

@@ -53,7 +53,7 @@ export async function seedBase(db) {
       );
       inserted.push({ id: row.id, base: p.base });
     }
-    await tx.run('INSERT INTO delivery_days (weekday, capacity) VALUES (2, 50), (5, 50)'); // Selasa & Jumat
+    await tx.run('INSERT INTO delivery_days (weekday, capacity) VALUES (2, 250), (5, 250)'); // Selasa & Jumat
 
     // Bangun order_history sintetis 16 minggu ke belakang berdasarkan pola demand tiap produk.
     const rand = rng(42);

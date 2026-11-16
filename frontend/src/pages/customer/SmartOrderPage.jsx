@@ -204,20 +204,14 @@ function SmartOrderPage() {
       <section className="info-section">
         <div className="info-sourdough">
           <p>
-            Sebagai informasi, karena roti sourdough ini terbuat dari ragi alami yang difermentasi
-            dengan waktu lama, maka kamu akan menemukan sensasi tekstur roti yang berbeda dari biasanya.
-          </p>
-          <p>
-            Roti yang dibuat dari sourdough akan sedikit lebih kenyal; Meskipun roti Tewiwi terbuat
-            dari sourdough, tetapi tidak ada rasa asam dalam rotinya.
+            Karena roti sourdough terbuat dari ragi alami yang difermentasi dengan waktu lama, kamu akan menemukan
+            sensasi tekstur yang berbeda dari biasanya — sedikit lebih kenyal. Meskipun berbahan sourdough,{' '}
+            <strong>tidak ada rasa asam dalam roti Tewiwi.</strong>
           </p>
           <ul className="info-warnings">
-            <li>⚠️ <em>Soft Sourdough</em> tahan kurang dari 24 jam di suhu ruang, dan 3 hari di dalam kulkas.</li>
-            <li>⚠️ <em>Country bread</em> tahan 30 hari di dalam freezer.</li>
+            <li>🔶 <strong>Soft Sourdough</strong> — tahan &lt;24 jam suhu ruang, 3 hari di kulkas</li>
+            <li>🔶 <strong>Country Bread</strong> — tahan 30 hari di freezer</li>
           </ul>
-          <p className="info-closing">
-            Semoga kamu suka dengan makanan yang dibuat oleh Tewiwi ini ya. Selamat menjelajah rasa 💙
-          </p>
         </div>
 
         <div className="info-pickup">

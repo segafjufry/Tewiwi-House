@@ -331,7 +331,7 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
-  max-width: 720px;
+  max-width: 820px;
   margin: 0 auto 8px;
   padding: 20px 24px;
   background: #fff;
@@ -369,7 +369,7 @@
 
 .info-pickup {
   flex-shrink: 0;
-  width: 185px;
+  width: 220px;
   background: #fff;
   border: 1.5px solid #e0e7ff;
   border-radius: 10px;

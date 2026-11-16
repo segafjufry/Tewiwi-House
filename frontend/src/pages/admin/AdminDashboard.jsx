@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Alert, Button, Dialog, DialogActions, DialogContent, DialogTitle, Paper, TextField, Typography } from '@mui/material'
 import BrandHeader from '../../components/common/BrandHeader'
+import ForecastStatistics from '../../components/admin/ForecastStatistics'
 import sourdoughImage from '../../assets/sourdough.jpg'
 import { orderStatuses } from '../../data/orderStatuses'
 import { rupiah } from '../../utils/formatCurrency'
@@ -311,10 +312,7 @@ function AdminDashboard({ admin, onSignOut }) {
         {tab === 'Statistik' && !loading && (
           <Paper className="order-card admin-card" elevation={0}>
             <Typography component="h1" className="admin-title">Statistik</Typography>
-            <div className="statistics-chart-slots">
-              <div className="statistics-chart-slot" aria-label="Area grafik statistik pertama" />
-              <div className="statistics-chart-slot" aria-label="Area grafik statistik kedua" />
-            </div>
+            <ForecastStatistics />
           </Paper>
         )}
       </div>

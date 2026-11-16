@@ -200,6 +200,27 @@ function SmartOrderPage() {
 
       {loadError && <Alert severity="error">{loadError}</Alert>}
 
+      <section className="store-info">
+        <div className="store-info-sourdough">
+          <p>
+            Karena roti sourdough terbuat dari ragi alami yang difermentasi dengan waktu lama,
+            kamu akan menemukan sensasi tekstur yang berbeda dari biasanya — sedikit lebih kenyal.
+            Meskipun berbahan sourdough, <strong>tidak ada rasa asam</strong> dalam roti Tewiwi.
+          </p>
+          <ul className="store-info-shelf">
+            <li>⚠️ <strong>Soft Sourdough</strong> — tahan &lt;24 jam suhu ruang, 3 hari di kulkas</li>
+            <li>⚠️ <strong>Country Bread</strong> — tahan 30 hari di freezer</li>
+          </ul>
+        </div>
+        <div className="store-info-pickup">
+          <span className="store-info-pickup-badge">BARU! Alamat pick-up</span>
+          <address>
+            📍 Komplek Cipta Graha<br />
+            Jl. Cipta Graha Permai Raya No. 40A
+          </address>
+        </div>
+      </section>
+
       <div className="order-content" id="menu">
         <section>
           <Paper className="order-card products-card" elevation={0}>

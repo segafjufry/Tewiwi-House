@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "model": "XGBoost",
+  "forecast_origin": "2025-12-31",
+  "target_date": "2026-01-02",
+  "horizon_days": 2,
+  "demand_by_sku": [
+    {
+      "sku_id": "TW001",
+      "product_name": "Espresso Fudgy Brownies",
+      "variant": "Small",
+      "stock_product_id": "TW001",
+      "forecast_units": 15.543438911437988
+    },
+    {
+      "sku_id": "TW002",
+      "product_name": "Espresso Fudgy Brownies",
+      "variant": "Large",
+      "stock_product_id": "TW001",
+      "forecast_units": 3.9623615741729736
+    },
+    {
+      "sku_id": "TW003",
+      "product_name": "Blueberry Cheese Crumble",
+      "variant": "Standard",
+      "stock_product_id": "TW003",
+      "forecast_units": 8.145977973937988
+    },
+    {
+      "sku_id": "TW004",
+      "product_name": "Korean Garlic Creamcheese",
+      "variant": "Standard",
+      "stock_product_id": "TW004",
+      "forecast_units": 8.50249195098877
+    },
+    {
+      "sku_id": "TW005",
+      "product_name": "Cranberry Walnut Creamcheese",
+      "variant": "Standard",
+      "stock_product_id": "TW005",
+      "forecast_units": 8.091473579406738
+    },
+    {
+      "sku_id": "TW006",
+      "product_name": "Dusty Choco Hazelnut",
+      "variant": "Standard",
+      "stock_product_id": "TW006",
+      "forecast_units": 8.400946617126465
+    },
+    {
+      "sku_id": "TW007",
+      "product_name": "Paket Alit",
+      "variant": "Package",
+      "stock_product_id": "TW007",
+      "forecast_units": 3.927412271499634
+    },
+    {
+      "sku_id": "TW008",
+      "product_name": "Salt Bread Original",
+      "variant": "Standard",
+      "stock_product_id": "TW008",
+      "forecast_units": 14.8861083984375
+    },
+    {
+      "sku_id": "TW009",
+      "product_name": "Sei Cheese Salt Bread",
+      "variant": "Standard",
+      "stock_product_id": "TW009",
+      "forecast_units": 8.526091575622559
+    },
+    {
+      "sku_id": "TW010",
+      "product_name": "Shokupan Loaf",
+      "variant": "Standard",
+      "stock_product_id": "TW010",
+      "forecast_units": 14.070902824401855
+    },
+    {
+      "sku_id": "TW011",
+      "product_name": "Country Bread",
+      "variant": "Standard",
+      "stock_product_id": "TW011",
+      "forecast_units": 8.118744850158691
+    }
+  ],
+  "stock_by_product": [
+    {
+      "stock_product_id": "TW001",
+      "product_name": "Espresso Fudgy Brownies",
+      "sku_ids": [
+        "TW001",
+        "TW002"
+      ],
+      "gross_demand_units": 19.505800247192383
+    },
+    {
+      "stock_product_id": "TW003",
+      "product_name": "Blueberry Cheese Crumble",
+      "sku_ids": [
+        "TW003"
+      ],
+      "gross_demand_units": 8.145977973937988
+    },
+    {
+      "stock_product_id": "TW004",
+      "product_name": "Korean Garlic Creamcheese",
+      "sku_ids": [
+        "TW004"
+      ],
+      "gross_demand_units": 8.50249195098877
+    },
+    {
+      "stock_product_id": "TW005",
+      "product_name": "Cranberry Walnut Creamcheese",
+      "sku_ids": [
+        "TW005"
+      ],
+      "gross_demand_units": 8.091473579406738
+    },
+    {
+      "stock_product_id": "TW006",
+      "product_name": "Dusty Choco Hazelnut",
+      "sku_ids": [
+        "TW006"
+      ],
+      "gross_demand_units": 8.400946617126465
+    },
+    {
+      "stock_product_id": "TW007",
+      "product_name": "Paket Alit",
+      "sku_ids": [
+        "TW007"
+      ],
+      "gross_demand_units": 3.927412271499634
+    },
+    {
+      "stock_product_id": "TW008",
+      "product_name": "Salt Bread Original",
+      "sku_ids": [
+        "TW008"
+      ],
+      "gross_demand_units": 14.8861083984375
+    },
+    {
+      "stock_product_id": "TW009",
+      "product_name": "Sei Cheese Salt Bread",
+      "sku_ids": [
+        "TW009"
+      ],
+      "gross_demand_units": 8.526091575622559
+    },
+    {
+      "stock_product_id": "TW010",
+      "product_name": "Shokupan Loaf",
+      "sku_ids": [
+        "TW010"
+      ],
+      "gross_demand_units": 14.070902824401855
+    },
+    {
+      "stock_product_id": "TW011",
+      "product_name": "Country Bread",
+      "sku_ids": [
+        "TW011"
+      ],
+      "gross_demand_units": 8.118744850158691
+    }
+  ]
+}

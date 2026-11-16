@@ -30,21 +30,34 @@ export function getInitialAdminSession() {
 /**
  * Verifikasi token masih valid dengan memanggil /api/auth/me.
  * Dipanggil saat app pertama kali dimuat. Mengembalikan session atau null.
+ *
+ * Hanya logout jika server secara eksplisit menolak token (401/403).
+ * Network error atau server tidak bisa dijangkau → pertahankan sesi yang ada
+ * supaya refresh halaman tidak paksa logout saat backend sedang tidak responsif.
  */
 export async function verifySession() {
   if (!isLoggedIn()) return null
   try {
     const me = await getMe()
+    // /api/auth/me sekarang mengembalikan { id, username, display_name }
     if (me?.id) {
       saveAdmin(me)
       return { admin: me }
     }
-  } catch {
-    // token invalid / expired
+    // Response sukses tapi data tidak valid → logout
+    apiLogout()
+    saveAdmin(null)
+    return null
+  } catch (err) {
+    // 401/403 = token ditolak server → logout
+    if (err.status === 401 || err.status === 403) {
+      apiLogout()
+      saveAdmin(null)
+      return null
+    }
+    // Network error / server mati / timeout → pertahankan sesi lokal
+    return getInitialAdminSession()
   }
-  apiLogout()
-  saveAdmin(null)
-  return null
 }
 
 /** Login admin. Mengembalikan { admin: { id, username, display_name } }. */

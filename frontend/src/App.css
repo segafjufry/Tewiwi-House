@@ -109,6 +109,77 @@
   transform: rotate(2deg);
 }
 
+/* ── Info toko: sourdough + pick-up ───────────────────────────────── */
+.store-info {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 16px;
+  margin: 0 0 28px;
+  padding: 18px 20px;
+  background: #f1f5ff;
+  border-radius: 16px;
+  border: 1px solid #dbe4f8;
+}
+
+.store-info-sourdough p {
+  margin: 0 0 10px;
+  color: #26365f;
+  line-height: 1.65;
+  font-size: 0.9rem;
+}
+
+.store-info-shelf {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.store-info-shelf li {
+  font-size: 0.85rem;
+  color: #3156a0;
+}
+
+.store-info-pickup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 200px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #dbe4f8;
+}
+
+.store-info-pickup-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #092f9e;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.store-info-pickup address {
+  font-style: normal;
+  font-size: 0.88rem;
+  color: #26365f;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .store-info {
+    grid-template-columns: 1fr;
+  }
+}
+
 .order-content {
   display: flex;
   width: min(100%, 720px);
@@ -438,7 +509,16 @@
 }
 
 .whatsapp-button.MuiButton-root {
-  margin-bottom: 4px;
+}
+
+.order-again-button.MuiButton-root {
+}
+
+.success-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
 }
 
 .admin-contact {
@@ -1290,4 +1370,129 @@
 .last-order-close-btn:hover {
   background: #d8e4fc;
   color: #092f9e;
+}
+
+/* ── Statistik: forecast XGBoost H-2 ───────────────────────────── */
+.forecast-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0 8px;
+}
+
+.forecast-section {
+  margin-top: 24px;
+}
+
+.forecast-heading {
+  margin: 0 0 10px;
+  color: #092f9e;
+  font-size: 1.05rem;
+}
+
+.forecast-note {
+  margin: 4px 0 10px;
+  font-size: 0.8rem;
+}
+
+.forecast-bars {
+  display: grid;
+  gap: 8px;
+}
+
+.forecast-bar-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 220px) 1fr 48px;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+}
+
+.forecast-bar-label {
+  color: #26365f;
+}
+
+.forecast-bar-track {
+  height: 14px;
+  border-radius: 999px;
+  background: #eef2fb;
+  overflow: hidden;
+}
+
+.forecast-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #092f9e;
+}
+
+.forecast-bar-value {
+  color: #092f9e;
+  text-align: right;
+}
+
+.forecast-line {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.forecast-legend {
+  display: flex;
+  gap: 18px;
+  margin-top: 6px;
+  color: #536995;
+  font-size: 0.8rem;
+}
+
+.forecast-legend i {
+  display: inline-block;
+  width: 18px;
+  height: 0;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.legend-actual { border-top: 2px solid #092f9e; }
+.legend-pred { border-top: 2px dashed #e08a1e; }
+
+.forecast-table-wrap {
+  overflow-x: auto;
+}
+
+.forecast-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.forecast-table th,
+.forecast-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e3e9f7;
+  text-align: left;
+}
+
+.forecast-table th {
+  color: #536995;
+  font-weight: 600;
+}
+
+.forecast-table tr.is-selected td {
+  background: #f1f5ff;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .forecast-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-bar-row {
+    grid-template-columns: 1fr 44px;
+  }
+
+  .forecast-bar-track {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
 }

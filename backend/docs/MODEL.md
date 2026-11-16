@@ -149,3 +149,23 @@ Estimasi tepung: 10.24 kg
 Catatan
 - 1 order (10 pcs) masih berstatus Baru dan belum masuk target. Konfirmasi sebelum produksi dimulai.
 ```
+
+## 9. Model XGBoost H-2 (tab Statistik)
+
+Model machine learning dari notebook `CapstoneProjectMVP_Tewiwi.ipynb` (XGBoost, horizon 2 hari, per SKU) ditampilkan di tab **Statistik** dashboard admin.
+
+Backend Node **tidak** menjalankan file `.joblib` (itu pickle Python). Yang dipakai adalah ekspor yang memang disiapkan notebook untuk website, di `backend/data/ml/`:
+
+| Berkas | Isi |
+|---|---|
+| `forecast_h2.json` | Forecast per SKU dan kebutuhan stok per produk untuk satu tanggal target |
+| `backtest_demand_per_sku.csv` | Aktual vs prediksi 5 model per SKU-hari (Okt–Des 2025) |
+| `backtest_stok_per_produk.csv` | Aktual vs prediksi per produk stok |
+
+`GET /api/model/h2-forecast` (admin) mengembalikan forecast, ranking MAE tiap model (dihitung dari CSV, baris tanpa aktual dilewati), dan total harian aktual vs prediksi.
+
+Tanggal target (`target_date`) tersimpan di level atas respons **dan** disematkan ke tiap baris `demand_by_sku` maupun `stock_by_product`, supaya setiap hasil forecast membawa tanggal prediksinya — penjual tahu ini prediksi untuk tanggal mana.
+
+**Snapshot, bukan prediksi langsung.** Forecast ini dibuat dari data sampai 2025-12-31 untuk 2026-01-02; field `age_days` memberi tahu seberapa lama tanggal target sudah lewat, dan UI menampilkan catatan. Untuk memperbarui, jalankan ulang notebook (sel ekspor) lalu timpa tiga berkas di atas. Prediksi langsung dari data order terbaru butuh layanan Python terpisah (mis. FastAPI yang memuat `.joblib` dengan scikit-learn 1.6.1, sesuai `library_versions` di bundle).
+
+Variabel opsional `ML_ARTIFACT_DIR` mengganti lokasi folder berkas.

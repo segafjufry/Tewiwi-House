@@ -233,3 +233,8 @@ export async function predict(delivery_date) {
 export async function getModelEvaluation() {
   return request('/api/model/evaluation');
 }
+
+/** Forecast XGBoost H-2 per SKU + hasil backtest, untuk tab Statistik (admin only). */
+export async function getH2Forecast() {
+  return request('/api/model/h2-forecast');
+}

@@ -331,12 +331,11 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
-  max-width: 820px;
-  margin: 0 auto 8px;
+  margin: 14px 0 0;
   padding: 20px 24px;
-  background: #fff;
-  border: 1.5px solid #e0e7ff;
-  border-radius: 14px;
+  background: #edf3ff;
+  border: 1.5px solid #c7d5f8;
+  border-radius: 16px;
 }
 
 .info-sourdough {
@@ -371,7 +370,7 @@
   flex-shrink: 0;
   width: 220px;
   background: #fff;
-  border: 1.5px solid #e0e7ff;
+  border: 1.5px solid #c7d5f8;
   border-radius: 10px;
   padding: 12px 14px;
   display: flex;

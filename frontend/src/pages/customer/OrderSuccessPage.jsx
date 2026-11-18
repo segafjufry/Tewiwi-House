@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Alert, Button, Paper, Typography } from '@mui/material'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import BrandHeader from '../../components/common/BrandHeader'
+import tewiwiLogo from '../../assets/tewiwi-logo.jpeg'
 import { rupiah } from '../../utils/formatCurrency'
 import { trackOrder } from '../../services/api'
 
@@ -140,6 +141,44 @@ function OrderSuccessPage() {
                 </Button>
                 <Button component={Link} to="/" variant="contained" className="order-again-button">
                   Pesan lagi
+                </Button>
+              </div>
+              <div className="instagram-follow">
+                <p>Suka roti Tewiwi? Yuk, ikuti kami di Instagram!</p>
+                <Button
+                  component="a"
+                  href="https://www.instagram.com/tewiwi.house/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="contained"
+                  className="instagram-button"
+                >
+                  <span className="instagram-button-logos" aria-hidden="true">
+                    <svg className="instagram-icon" viewBox="0 0 24 24">
+                      <defs>
+                        <linearGradient id="instagram-gradient" x1="0" y1="1" x2="1" y2="0">
+                          <stop offset="0%" stopColor="#feda75" />
+                          <stop offset="50%" stopColor="#d62976" />
+                          <stop offset="100%" stopColor="#4f5bd5" />
+                        </linearGradient>
+                      </defs>
+                      <rect width="24" height="24" rx="7" fill="url(#instagram-gradient)" />
+                      <rect
+                        x="5.5"
+                        y="5.5"
+                        width="13"
+                        height="13"
+                        rx="4"
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="1.8"
+                      />
+                      <circle cx="12" cy="12" r="3" fill="none" stroke="white" strokeWidth="1.8" />
+                      <circle cx="16.5" cy="7.7" r="1" fill="white" />
+                    </svg>
+                    <img src={tewiwiLogo} alt="" />
+                  </span>
+                  Ikuti @tewiwi.house
                 </Button>
               </div>
             </>

@@ -561,6 +561,64 @@
   margin-bottom: 0;
 }
 
+.instagram-follow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #fff5f8;
+  text-align: center;
+}
+
+.instagram-follow p {
+  margin: 0;
+  color: #3156a0;
+}
+
+.instagram-button.MuiButton-root {
+  display: inline-flex;
+  min-height: 50px;
+  gap: 10px;
+  padding: 6px 16px 6px 8px;
+  border: 1px solid #f0c4d5;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #092f9e;
+  box-shadow: 0 4px 12px rgb(181 46 112 / 12%);
+  font-weight: 700;
+  text-transform: none;
+}
+
+.instagram-button.MuiButton-root:hover {
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgb(181 46 112 / 20%);
+}
+
+.instagram-button-logos {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.instagram-icon {
+  display: block;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+}
+
+.instagram-button-logos img {
+  display: block;
+  width: 48px;
+  height: 36px;
+  border-radius: 6px;
+  background: #ffffff;
+  object-fit: contain;
+}
+
 .admin-contact {
   margin: 12px 0 20px;
 }

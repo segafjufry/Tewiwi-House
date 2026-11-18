@@ -367,6 +367,17 @@ function SmartOrderPage() {
         </section>
       </div>
       <footer className="page-footer">Tewiwi House · Dibuat segar untukmu.</footer>
+      <Button
+        component="a"
+        href="https://chatbottewiwi.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="contained"
+        className="chatbot-button"
+        aria-label="Buka Tewiwi AI di tab baru"
+      >
+        💬 Tewiwi AI
+      </Button>
     </main>
   )
 }

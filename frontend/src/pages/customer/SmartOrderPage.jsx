@@ -5,6 +5,7 @@ import BrandHeader from '../../components/common/BrandHeader'
 import sourdoughImage from '../../assets/sourdough.jpg'
 import { rupiah } from '../../utils/formatCurrency'
 import { getProducts, getSlots, createOrder } from '../../services/api'
+import { getProductImage, isPaketAlitProduct } from '../../utils/productImage'
 
 const FALLBACK_IMAGE = sourdoughImage
 
@@ -235,8 +236,8 @@ function SmartOrderPage() {
                 return (
                   <article className={`product-row${quantity ? ' is-selected' : ''}`} key={product.id}>
                     <img
-                      className="product-image"
-                      src={product.image_url || FALLBACK_IMAGE}
+                      className={`product-image${isPaketAlitProduct(product) ? ' product-image--paket-alit' : ''}`}
+                      src={getProductImage(product, FALLBACK_IMAGE)}
                       alt={product.name}
                     />
                     <div className="product-details">

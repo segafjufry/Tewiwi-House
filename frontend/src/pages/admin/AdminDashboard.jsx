@@ -6,6 +6,7 @@ import sourdoughImage from '../../assets/sourdough.jpg'
 import { orderStatuses } from '../../data/orderStatuses'
 import { rupiah } from '../../utils/formatCurrency'
 import { getOrders, updateOrderStatus, getProducts, getSlots, changePassword } from '../../services/api'
+import { getProductImage, isPaketAlitProduct } from '../../utils/productImage'
 
 const FALLBACK_IMAGE = sourdoughImage
 
@@ -298,7 +299,11 @@ function AdminDashboard({ admin, onSignOut }) {
               <div className="production-list">
                 {productionList.map((product) => (
                   <div className="production-item" key={product.id}>
-                    <img src={product.image_url || FALLBACK_IMAGE} alt="" />
+                    <img
+                      className={isPaketAlitProduct(product) ? 'paket-alit-image' : undefined}
+                      src={getProductImage(product, FALLBACK_IMAGE)}
+                      alt=""
+                    />
                     <strong>{product.name}</strong>
                     <span>{product.quantity} roti</span>
                   </div>

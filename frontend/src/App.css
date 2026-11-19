@@ -183,6 +183,10 @@
   background: #ffffff;
 }
 
+.product-image--paket-alit {
+  object-position: center bottom;
+}
+
 .product-details {
   min-width: 0;
   flex: 1;
@@ -952,6 +956,10 @@
   height: 46px;
   border-radius: 10px;
   object-fit: cover;
+}
+
+.production-item img.paket-alit-image {
+  object-position: center bottom;
 }
 
 .production-item strong {

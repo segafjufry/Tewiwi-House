@@ -12,3 +12,16 @@ backups/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Log and output files
+*.txt
+!backend/model/requirements.txt
+
+# Test scripts at root
+test*.py

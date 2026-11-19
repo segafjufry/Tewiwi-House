@@ -1,7 +1,0 @@
-Menghubungkan ke database...
-Kolom tabel products: ['id', 'name', 'price', 'flour_grams', 'active', 'description', 'image_url']
-SKU mapping: {1: 'TW001', 2: 'TW002', 3: 'TW003', 4: 'TW004', 5: 'TW005', 6: 'TW006', 7: 'TW007', 8: 'TW008', 9: 'TW009', 10: 'TW010', 11: 'TW011'}
-Mengambil data dari 2025-12-31 s/d 2026-11-19...
-Ditemukan 12 baris data.
-Selesai. 12 baris ditulis ke aktual_baru.csv, 0 baris dilewati (product tidak dikenal).
-Tanggal terakhir tersedia: cek aktual_baru.csv

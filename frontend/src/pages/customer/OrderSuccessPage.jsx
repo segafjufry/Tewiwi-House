@@ -144,7 +144,7 @@ function OrderSuccessPage() {
                 </Button>
               </div>
               <div className="instagram-follow">
-                <p>Suka roti Tewiwi? Yuk, ikuti kami di Instagram!</p>
+                <p>Suka roti Tewiwi? Yuk, follow kami di Instagram!</p>
                 <Button
                   component="a"
                   href="https://www.instagram.com/tewiwi.house/"
@@ -178,7 +178,7 @@ function OrderSuccessPage() {
                     </svg>
                     <img src={tewiwiLogo} alt="" />
                   </span>
-                  Ikuti @tewiwi.house
+                  Follow @tewiwi.house
                 </Button>
               </div>
             </>

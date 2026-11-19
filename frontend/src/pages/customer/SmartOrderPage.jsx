@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Alert, Button, Paper, TextField, Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import BrandHeader from '../../components/common/BrandHeader'
+import customerHeroImage from '../../assets/customer-hero.jpg'
 import sourdoughImage from '../../assets/sourdough.jpg'
 import { rupiah } from '../../utils/formatCurrency'
 import { getProducts, getSlots, createOrder } from '../../services/api'
@@ -196,7 +197,7 @@ function SmartOrderPage() {
             Lihat menu
           </Button>
         </div>
-        <img className="hero-image" src={sourdoughImage} alt="Roti sourdough artisan" />
+        <img className="hero-image" src={customerHeroImage} alt="Assortmen roti artisan Tewiwi" />
       </section>
 
       {loadError && <Alert severity="error">{loadError}</Alert>}

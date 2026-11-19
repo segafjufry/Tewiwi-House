@@ -208,7 +208,7 @@ function SmartOrderPage() {
           <p>
             Karena roti sourdough terbuat dari ragi alami yang difermentasi dengan waktu lama, kamu akan menemukan
             sensasi tekstur yang berbeda dari biasanya — sedikit lebih kenyal. Meskipun berbahan sourdough,{' '}
-            <strong>tidak ada rasa asam dalam roti Tewiwi.</strong>
+            <strong>tidak ada rasa asam dalam roti tewiwi.</strong>
           </p>
           <ul className="info-warnings">
             <li>🔶 <strong>Soft Sourdough</strong> — tahan &lt;24 jam suhu ruang, 3 hari di kulkas</li>
@@ -229,7 +229,7 @@ function SmartOrderPage() {
         <section>
           <Paper className="order-card products-card" elevation={0}>
             <Typography component="h2" className="section-title">
-              1. Pilih roti
+              Pilih roti
             </Typography>
             <div className="product-list">
               {products.map((product) => {
@@ -278,7 +278,7 @@ function SmartOrderPage() {
         <section>
           <Paper className="order-card delivery-card" elevation={0}>
             <Typography component="h2" className="section-title">
-              2. Pilih hari pengiriman
+              Pilih hari pengiriman
             </Typography>
             <div className="delivery-options">
               {slots.map((slot) => {
@@ -310,7 +310,7 @@ function SmartOrderPage() {
         <section>
           <Paper className="order-card customer-card" elevation={0}>
             <Typography component="h2" className="section-title">
-              3. Data pemesan
+              Data pemesan
             </Typography>
             <form onSubmit={submitOrder} noValidate>
               <TextField

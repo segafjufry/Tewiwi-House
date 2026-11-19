@@ -233,3 +233,13 @@ export async function predict(delivery_date) {
 export async function getModelEvaluation() {
   return request('/api/model/evaluation');
 }
+
+/** Statistik model XGBoost H-2: forecast terbaru + hasil backtest dari notebook (admin only). */
+export async function getXgboostStatistics() {
+  return request('/api/model/xgboost');
+}
+
+/** Forecast XGBoost untuk satu tanggal pengiriman (Selasa/Jumat) dari layanan Python (admin only). */
+export async function getLiveForecast(date) {
+  return request(`/api/model/forecast?date=${encodeURIComponent(date)}`);
+}

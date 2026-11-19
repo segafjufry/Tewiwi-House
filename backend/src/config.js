@@ -56,6 +56,9 @@ export function loadConfig(env = process.env) {
       accountName: env.PAYMENT_ACCOUNT_NAME || 'Tewiwi House',
       adminWhatsapp: env.ADMIN_WHATSAPP || '', // contoh: 081234567890 atau 6281234567890
     },
+    // Layanan Python (FastAPI, publish_tewiwi.py) untuk forecast XGBoost per tanggal. Opsional.
+    // Contoh: http://127.0.0.1:8000. Kosong = tab Statistik memakai snapshot JSON saja.
+    forecastApiUrl: (env.FORECAST_API_URL || '').replace(/\/+$/, ''),
     anthropicKey: env.ANTHROPIC_API_KEY || '',
     anthropicModel: env.ANTHROPIC_MODEL || 'claude-haiku-5-5',
     rateLimit: {

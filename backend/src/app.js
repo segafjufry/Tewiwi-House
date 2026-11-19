@@ -62,7 +62,7 @@ export function createApp(db, cfg = config) {
   app.use('/api/slots', slotsRouter(db));
   app.use('/api/orders', ordersRouter(db, cfg));
   app.use('/api/production', productionRouter(db));
-  app.use('/api', modelRouter(db));
+  app.use('/api', modelRouter(db, cfg));
   app.use('/api/auth', authRouter(db));
 
   app.use(notFound);

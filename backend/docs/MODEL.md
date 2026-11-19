@@ -149,3 +149,19 @@ Estimasi tepung: 10.24 kg
 Catatan
 - 1 order (10 pcs) masih berstatus Baru dan belum masuk target. Konfirmasi sebelum produksi dimulai.
 ```
+
+
+## 9. Model XGBoost H-2 (tab Statistik)
+
+Model dari notebook (`Tewiwi_H-2_Per_SKU.joblib`) dipakai dengan dua jalur:
+
+| Jalur | Endpoint (admin) | Sumber |
+|---|---|---|
+| Snapshot | `GET /api/model/xgboost` | `src/model-data/xgboost_h2.json`, dibuat oleh `python model/build_artifact.py <folder ekspor notebook>` |
+| Live | `GET /api/model/forecast?date=YYYY-MM-DD` | Layanan FastAPI `model/forecast_api.py` (`FORECAST_API_URL`). Hanya Selasa/Jumat. |
+
+Snapshot berisi MAE/RMSE per model (harian dan per slot), deret aktual vs prediksi per SKU, dan forecast 2026-01-02.
+Jalur live butuh model di-load oleh Python; jika `FORECAST_API_URL` kosong, endpoint mengembalikan 503 dan snapshot tetap jalan.
+
+Catatan: data masih sintetis. Origin forecast live = tanggal target dikurangi 2 hari; jika setelah akhir data latih (2025-12-31),
+`model/aktual_baru.csv` (order_date,sku_id,quantity) harus memuat aktual sampai tanggal origin, kalau tidak layanan menjawab 422.

@@ -43,12 +43,40 @@ Di Postman, gunakan collection dan environment yang tersedia di folder `docs/` �
 | Nonaktifkan / aktifkan admin | `PATCH /api/auth/admins/:id/active` `{ active: false/true }` |
 | Reset password (lupa password) | `npm run reset-password -- <username> <password_baru>` |
 
+### Kelola Produk
+
+Di dashboard admin, buka tab **Produk**.
+
+| Aksi | Cara |
+|---|---|
+| Tambah produk | **Tambah produk**, isi nama, harga, tepung per pcs, deskripsi dan URL gambar (opsional), lalu **Simpan** |
+| Ubah produk | **Ubah** pada produk yang dipilih |
+| Sembunyikan dari customer | **Nonaktifkan** (atau matikan saklar "Tampilkan di form pemesanan"). Produk lama tetap ada di riwayat order |
+| Hapus produk | **Hapus**, lalu konfirmasi. Produk yang sudah pernah dipesan tidak bisa dihapus; sistem menawarkan **Nonaktifkan saja** |
+
+Endpoint yang dipakai: `GET /api/products?all=true`, `POST /api/products`, `PUT /api/products/:id`, `DELETE /api/products/:id`.
+
+### Atur Kapasitas Slot
+
+Di dashboard admin, buka tab **Kapasitas**.
+
+| Aksi | Cara |
+|---|---|
+| Lihat sisa kapasitas | Daftar **Slot mendatang** menampilkan roti terpesan, kapasitas, dan status Penuh |
+| Ubah kapasitas satu tanggal | **Ubah kapasitas** pada slot itu. Tidak boleh di bawah jumlah roti yang sudah dipesan. Slot berlabel **Diubah manual** |
+| Kembalikan ke default | **Kembalikan ke default** pada slot berlabel Diubah manual |
+| Ubah kapasitas default | Di **Hari pengiriman dan kapasitas default**, ubah angka lalu **Simpan** |
+| Tutup / buka hari pengiriman | Matikan atau nyalakan saklar hari itu lalu **Simpan**. Order yang sudah masuk tetap tersimpan |
+| Tambah hari pengiriman | Pilih hari di baris **Tambah hari…**, isi kapasitas, lalu **Tambah** |
+
+Endpoint yang dipakai: `GET /api/slots/config`, `PUT /api/slots/config/days/:weekday`, `PUT` dan `DELETE /api/slots/:date/capacity`.
+
 ### Alur Harian
 
 1. **Lihat rekap** order per tanggal pengiriman (`GET /api/production/recap`).
 2. **Konfirmasi order** yang masuk (`Baru` → `Dikonfirmasi`) **sebelum produksi dimulai (H-2)**. Hanya order terkonfirmasi yang masuk target produksi.
-3. **Buka ringkasan produksi** untuk tanggal itu (`GET /api/production/summary?date=...`): jumlah order, prediksi, target per produk, dan estimasi tepung.
-4. **Buat production brief** (`POST /api/production/brief`) untuk dibagikan ke tim dapur.
+3. **Buka ringkasan produksi** untuk tanggal itu (tab **Produksi**, pilih slot; API: `GET /api/production/summary?date=...`): jumlah order, prediksi, target per produk, dan estimasi tepung.
+4. **Buat production brief** (tombol **Buat production brief**, lalu **Salin teks**; API: `POST /api/production/brief`) untuk dibagikan ke tim dapur. Label di atas teks menunjukkan apakah brief dibuat Generative AI atau template (jika `ANTHROPIC_API_KEY` kosong).
 5. **Perbarui status** sesuai kemajuan: `Diproduksi` saat roti dibuat, `Dikirim` saat diantar.
 
 ### Situasi Umum

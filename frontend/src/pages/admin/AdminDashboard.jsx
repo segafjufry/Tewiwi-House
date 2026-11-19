@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Alert, Button, Dialog, DialogActions, DialogContent, DialogTitle, Paper, TextField, Typography } from '@mui/material'
 import BrandHeader from '../../components/common/BrandHeader'
+import ModelStatistics from '../../components/admin/ModelStatistics'
+import ProductManager from '../../components/admin/ProductManager'
+import CapacityManager from '../../components/admin/CapacityManager'
+import ProductionBrief from '../../components/admin/ProductionBrief'
 import sourdoughImage from '../../assets/sourdough.jpg'
 import { orderStatuses } from '../../data/orderStatuses'
 import { rupiah } from '../../utils/formatCurrency'
@@ -157,7 +161,7 @@ function AdminDashboard({ admin, onSignOut }) {
       <BrandHeader admin />
       <div className="admin-content">
         <div className="admin-tabs" role="tablist" aria-label="Dashboard admin">
-          {['Pesanan', 'Kapasitas', 'Produksi', 'Statistik'].map((tabName) => (
+          {['Pesanan', 'Produk', 'Kapasitas', 'Produksi', 'Statistik'].map((tabName) => (
             <button
               key={tabName}
               type="button"
@@ -258,41 +262,16 @@ function AdminDashboard({ admin, onSignOut }) {
           </Paper>
         )}
 
-        {tab === 'Kapasitas' && !loading && (
-          <Paper className="order-card admin-card" elevation={0}>
-            <Typography component="h1" className="admin-title">Kapasitas pengiriman</Typography>
-            <p className="muted">Kapasitas tersedia untuk slot pengiriman mendatang.</p>
-            <div className="capacity-list">
-              {slots.map((slot) => {
-                const used = slot.capacity - slot.left
-                return (
-                  <div className="capacity-item" key={slot.delivery_date}>
-                    <div className="capacity-heading">
-                      <strong>{formatDelivery(slot.delivery_date)}</strong>
-                      <span>{used}/{slot.capacity} roti</span>
-                    </div>
-                    <div
-                      className="capacity-track"
-                      role="progressbar"
-                      aria-label={`Kapasitas ${formatDelivery(slot.delivery_date)}`}
-                      aria-valuenow={used}
-                      aria-valuemin={0}
-                      aria-valuemax={slot.capacity}
-                    >
-                      <span style={{ width: `${(used / slot.capacity) * 100}%` }} />
-                    </div>
-                    <p className="muted">Sisa {slot.left} roti</p>
-                  </div>
-                )
-              })}
-            </div>
-          </Paper>
-        )}
+        {tab === 'Produk' && !loading && <ProductManager products={products} onChanged={loadData} />}
+
+        {tab === 'Kapasitas' && !loading && <CapacityManager slots={slots} onChanged={loadData} />}
+
+        {tab === 'Produksi' && !loading && <ProductionBrief slots={slots} />}
 
         {tab === 'Produksi' && !loading && (
-          <Paper className="order-card admin-card" elevation={0}>
-            <Typography component="h1" className="admin-title">Ringkasan produksi</Typography>
-            <p className="muted">Jumlah roti dari semua pesanan yang belum dibatalkan.</p>
+          <Paper className="order-card admin-card brief-card" elevation={0}>
+            <Typography component="h1" className="admin-title">Semua pesanan aktif</Typography>
+            <p className="muted">Jumlah roti per produk dari semua pesanan yang belum dibatalkan, di semua tanggal.</p>
             {productionList.length === 0 ? (
               <p className="empty-state">Belum ada roti yang perlu diproduksi.</p>
             ) : (
@@ -316,10 +295,7 @@ function AdminDashboard({ admin, onSignOut }) {
         {tab === 'Statistik' && !loading && (
           <Paper className="order-card admin-card" elevation={0}>
             <Typography component="h1" className="admin-title">Statistik</Typography>
-            <div className="statistics-chart-slots">
-              <div className="statistics-chart-slot" aria-label="Area grafik statistik pertama" />
-              <div className="statistics-chart-slot" aria-label="Area grafik statistik kedua" />
-            </div>
+            <ModelStatistics />
           </Paper>
         )}
       </div>

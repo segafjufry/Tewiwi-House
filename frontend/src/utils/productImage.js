@@ -4,8 +4,10 @@ import koreanGarlicImage from '../assets/korean-garlic-creamcheese.jpg'
 import dustyChocoImage from '../assets/dusty-choco-hazelnut.jpg'
 import blueberryCheeseImage from '../assets/blueberry-cheese-crumble.jpg'
 import espressoBrowniesImage from '../assets/espresso-fudgy-brownies.jpg'
+import espressoBrowniesSmallImage from '../assets/espresso-fudgy-brownies-s.jpg'
 import shokupanImage from '../assets/shokupan-loaf.jpg'
 import saltBreadImage from '../assets/salt-bread.jpg'
+import seiCheeseSaltBreadImage from '../assets/sei-cheese-salt-bread.jpg'
 import cranberryWalnutImage from '../assets/cranberry-walnut-creamcheese.jpg'
 
 export function isPaketAlitProduct(product) {
@@ -32,12 +34,20 @@ export function isEspressoBrowniesProduct(product) {
   return /^espresso fudgy brownies(?:\b|$)/i.test(product.name?.trim() ?? '')
 }
 
+export function isEspressoBrowniesSmallProduct(product) {
+  return /^espresso fudgy brownies\s+s(?:\b|$)/i.test(product.name?.trim() ?? '')
+}
+
 export function isShokupanProduct(product) {
   return /^shokupan loaf(?:\b|$)/i.test(product.name?.trim() ?? '')
 }
 
 export function isSaltBreadProduct(product) {
   return /\bsalt bread\b/i.test(product.name?.trim() ?? '')
+}
+
+export function isSeiCheeseSaltBreadProduct(product) {
+  return /^sei cheese salt bread(?:\b|$)/i.test(product.name?.trim() ?? '')
 }
 
 export function isCranberryWalnutProduct(product) {
@@ -50,8 +60,10 @@ export function getProductImage(product, fallbackImage) {
   if (isKoreanGarlicProduct(product)) return koreanGarlicImage
   if (isDustyChocoProduct(product)) return dustyChocoImage
   if (isBlueberryCheeseProduct(product)) return blueberryCheeseImage
+  if (isEspressoBrowniesSmallProduct(product)) return espressoBrowniesSmallImage
   if (isEspressoBrowniesProduct(product)) return espressoBrowniesImage
   if (isShokupanProduct(product)) return shokupanImage
+  if (isSeiCheeseSaltBreadProduct(product)) return seiCheeseSaltBreadImage
   if (isSaltBreadProduct(product)) return saltBreadImage
   if (isCranberryWalnutProduct(product)) return cranberryWalnutImage
   return product.image_url || fallbackImage

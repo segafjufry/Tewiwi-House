@@ -13,6 +13,7 @@ import {
   Typography,
 } from '@mui/material'
 import sourdoughImage from '../../assets/sourdough.jpg'
+import { getProductImage } from '../../utils/productImage'
 import { createProduct, deleteProduct, updateProduct } from '../../services/api'
 import { emptyProductForm, formFromProduct, validateProductForm } from '../../utils/productForm'
 import { rupiah } from '../../utils/formatCurrency'
@@ -138,7 +139,7 @@ function ProductManager({ products, onChanged }) {
         <div className="product-admin-list">
           {products.map((product) => (
             <div className={`product-admin-item${product.active ? '' : ' is-inactive'}`} key={product.id}>
-              <img src={product.image_url || sourdoughImage} alt="" />
+              <img src={getProductImage(product, sourdoughImage)} alt="" />
               <div className="product-admin-info">
                 <strong>{product.name}</strong>
                 <span>

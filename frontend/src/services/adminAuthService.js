@@ -37,7 +37,7 @@ export async function verifySession() {
     const me = await getMe()
     // /api/auth/me mengembalikan payload JWT: { sub, username, display_name, iat, exp }
     if (me?.sub || me?.username) {
-      const admin = { id: me.sub, username: me.username, display_name: me.display_name }
+      const admin = { id: me.sub ? Number(me.sub) : me.id, username: me.username, display_name: me.display_name }
       saveAdmin(admin)
       return { admin }
     }
@@ -52,8 +52,9 @@ export async function verifySession() {
 /** Login admin. Mengembalikan { admin: { id, username, display_name } }. */
 export async function signInAdmin(username, password) {
   const data = await apiLogin(username, password)
-  saveAdmin(data.admin)
-  return { admin: data.admin }
+  const admin = { ...data.admin, id: Number(data.admin.id) }
+  saveAdmin(admin)
+  return { admin }
 }
 
 /** Logout admin. */

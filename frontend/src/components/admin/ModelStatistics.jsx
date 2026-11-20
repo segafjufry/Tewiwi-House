@@ -36,22 +36,25 @@ function niceMax(v) {
 }
 
 function BarChart({ rows, label }) {
-  const W = 640
-  const rowH = 26
-  const left = 200
+  const W = 480
+  const rowH = 28
+  const left = 160
   const right = 56
   const H = rows.length * rowH + 12
   const max = niceMax(Math.max(...rows.map((r) => r.value)))
   const scale = (v) => ((W - left - right) * v) / max
+  function truncate(text, maxLen = 22) {
+    return text.length > maxLen ? text.slice(0, maxLen - 1) + '…' : text
+  }
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="stat-svg" role="img" aria-label={label}>
       {rows.map((r, i) => {
         const y = 6 + i * rowH
         return (
           <g key={r.key}>
-            <text x={left - 8} y={y + 13} textAnchor="end" className="stat-svg-label">{r.label}</text>
+            <text x={left - 8} y={y + 14} textAnchor="end" className="stat-svg-label">{truncate(r.label)}</text>
             <rect x={left} y={y} width={Math.max(scale(r.value), 1)} height={rowH - 8} rx="4" fill={COLORS.xgb} />
-            <text x={left + scale(r.value) + 6} y={y + 13} className="stat-svg-value">{nf1.format(r.value)}</text>
+            <text x={left + scale(r.value) + 6} y={y + 14} className="stat-svg-value">{nf1.format(r.value)}</text>
           </g>
         )
       })}

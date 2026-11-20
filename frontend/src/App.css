@@ -1527,6 +1527,16 @@
   display: block;
   width: 100%;
   height: auto;
+  overflow: visible;
+}
+
+.stat-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.statistics-chart-slot {
+  overflow-x: auto;
 }
 
 .stat-svg-label {

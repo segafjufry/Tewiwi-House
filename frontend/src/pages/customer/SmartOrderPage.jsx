@@ -6,7 +6,7 @@ import customerHeroImage from '../../assets/customer-hero.jpg'
 import sourdoughImage from '../../assets/sourdough.jpg'
 import { rupiah } from '../../utils/formatCurrency'
 import { getProducts, getSlots, createOrder } from '../../services/api'
-import { getProductImage, isPaketAlitProduct } from '../../utils/productImage'
+import { getProductDescription, getProductImage, isPaketAlitProduct } from '../../utils/productImage'
 
 const FALLBACK_IMAGE = sourdoughImage
 
@@ -235,37 +235,42 @@ function SmartOrderPage() {
               {products.map((product) => {
                 const quantity = quantities[product.id] ?? 0
                 return (
-                  <article className={`product-row${quantity ? ' is-selected' : ''}`} key={product.id}>
-                    <img
-                      className={`product-image${isPaketAlitProduct(product) ? ' product-image--paket-alit' : ''}`}
-                      src={getProductImage(product, FALLBACK_IMAGE)}
-                      alt={product.name}
-                    />
-                    <div className="product-details">
+                  <article className={`product-card${quantity ? ' is-selected' : ''}`} key={product.id}>
+                    <div className="product-media">
+                      <img
+                        className={`product-image${isPaketAlitProduct(product) ? ' product-image--paket-alit' : ''}`}
+                        src={getProductImage(product, FALLBACK_IMAGE)}
+                        alt={product.name}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      {quantity > 0 && <span className="product-picked">{quantity} dipilih</span>}
+                    </div>
+                    <div className="product-body">
                       <Typography component="h3" className="product-name">
                         {product.name}
                       </Typography>
-                      {product.description && (
-                        <p className="product-description">{product.description}</p>
-                      )}
-                      <Typography className="product-price">{rupiah(product.price)}</Typography>
-                    </div>
-                    <div className="quantity-control" aria-label={`Jumlah ${product.name}`}>
-                      <button
-                        type="button"
-                        aria-label={`Kurangi ${product.name}`}
-                        onClick={() => changeQuantity(product.id, -1)}
-                      >
-                        −
-                      </button>
-                      <output aria-live="polite">{quantity}</output>
-                      <button
-                        type="button"
-                        aria-label={`Tambah ${product.name}`}
-                        onClick={() => changeQuantity(product.id, 1)}
-                      >
-                        +
-                      </button>
+                      <p className="product-description">{getProductDescription(product)}</p>
+                      <div className="product-footer">
+                        <Typography className="product-price">{rupiah(product.price)}</Typography>
+                        <div className="quantity-control" aria-label={`Jumlah ${product.name}`}>
+                          <button
+                            type="button"
+                            aria-label={`Kurangi ${product.name}`}
+                            onClick={() => changeQuantity(product.id, -1)}
+                          >
+                            −
+                          </button>
+                          <output aria-live="polite">{quantity}</output>
+                          <button
+                            type="button"
+                            aria-label={`Tambah ${product.name}`}
+                            onClick={() => changeQuantity(product.id, 1)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </article>
                 )

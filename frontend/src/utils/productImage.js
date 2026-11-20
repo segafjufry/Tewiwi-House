@@ -68,3 +68,25 @@ export function getProductImage(product, fallbackImage) {
   if (isCranberryWalnutProduct(product)) return cranberryWalnutImage
   return product.image_url || fallbackImage
 }
+
+// Penjelasan cadangan jika kolom description di database masih kosong
+// (produk lama diberi nilai kosong oleh migrasi 007).
+const FALLBACK_DESCRIPTIONS = [
+  [/^paket alit/i, 'Paket assortmen berisi berbagai varian roti signature Tewiwi.'],
+  [/^country bread/i, 'Roti country bread artisan dengan kulit tebal dan remah yang kenyal.'],
+  [/^korean garlic/i, 'Roti garlic ala Korea dengan filling creamcheese yang gurih dan creamy.'],
+  [/^dusty choco/i, 'Roti berlapis cokelat dan hazelnut dengan taburan dusty sugar.'],
+  [/^blueberry cheese/i, 'Roti dengan isian blueberry, taburan keju, dan crumble renyah di atasnya.'],
+  [/^espresso fudgy brownies/i, 'Brownies fudgy dengan rasa espresso, padat dan lembap.'],
+  [/^shokupan loaf/i, 'Roti tawar Jepang (shokupan) yang lembut, empuk, dan serbaguna.'],
+  [/^cranberry walnut/i, 'Roti creamcheese dengan cranberry asam dan kacang walnut yang renyah.'],
+  [/\bsalt bread\b/i, 'Salt bread dengan kulit renyah dan bagian dalam yang empuk.'],
+]
+
+export function getProductDescription(product) {
+  const text = product.description?.trim()
+  if (text) return text
+  const name = product.name?.trim() ?? ''
+  const match = FALLBACK_DESCRIPTIONS.find(([pattern]) => pattern.test(name))
+  return match ? match[1] : 'Dipanggang segar sesuai pesananmu.'
+}

@@ -90,6 +90,8 @@ def main():
             sar = sarima_pred(base, t=t)
             existing.append([ds, None, xgb, sar])
 
+        # Sort berdasarkan tanggal
+        existing.sort(key=lambda r: r[0])
         data["backtest"]["daily_series"][sku_id] = existing
 
     # Update daily_to
@@ -119,6 +121,9 @@ def main():
             "XGBoost": round(total_xgb, 1),
             "SARIMA": round(total_sar, 1),
         })
+
+    # Sort slot_series berdasarkan tanggal
+    data["backtest"]["slot_series"].sort(key=lambda s: s["delivery_date"])
 
     # Update slot_to
     if slot_dates:

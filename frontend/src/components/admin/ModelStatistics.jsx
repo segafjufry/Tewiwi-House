@@ -37,7 +37,7 @@ function niceMax(v) {
 
 function BarChart({ rows, label }) {
   const W = 480
-  const rowH = 28
+  const rowH = 20
   const left = 160
   const right = 56
   const H = rows.length * rowH + 12

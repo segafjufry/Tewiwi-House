@@ -107,7 +107,7 @@ function SlotChart({ slots, label }) {
   const W = 640
   const H = 240
   const pad = { l: 40, r: 12, t: 12, b: 28 }
-  const max = niceMax(Math.max(...slots.flatMap((s) => [s.actual, s.XGBoost, s.SARIMA])))
+  const max = niceMax(Math.max(...slots.flatMap((s) => [s.actual, s.XGBoost, s.SARIMA].filter(v => v != null)), 1))
   const groupW = (W - pad.l - pad.r) / slots.length
   const barW = Math.min(26, groupW / 4)
   const y = (v) => pad.t + (H - pad.t - pad.b) * (1 - v / max)
@@ -124,17 +124,21 @@ function SlotChart({ slots, label }) {
         const cx = pad.l + groupW * i + groupW / 2
         return (
           <g key={s.delivery_date}>
-            {series.map(([key, color], j) => (
-              <rect
-                key={key}
-                x={cx + (j - 1.5) * barW}
-                y={y(s[key])}
-                width={barW - 2}
-                height={y(0) - y(s[key])}
-                rx="3"
-                fill={color}
-              />
-            ))}
+            {series.map(([key, color], j) => {
+              const val = s[key]
+              if (val == null) return null
+              return (
+                <rect
+                  key={key}
+                  x={cx + (j - 1.5) * barW}
+                  y={y(val)}
+                  width={barW - 2}
+                  height={y(0) - y(val)}
+                  rx="3"
+                  fill={color}
+                />
+              )
+            })}
             <text x={cx} y={H - 8} textAnchor="middle" className="stat-svg-label">{shortDate(s.delivery_date)}</text>
           </g>
         )

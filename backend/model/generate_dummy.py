@@ -131,7 +131,36 @@ def main():
                 for sp, v in stock_map.items()
             ],
         }
+
+        # Update forecast_slot ke slot yang sama
+        order_window_start = next_slot - timedelta(days=2)
+        order_window_end   = next_slot - timedelta(days=1)
+        slot_demand = []
+        total_slot_units = 0
+        for sku_id, cfg in SKU_CONFIG.items():
+            base_idx = 0 if weekday_of(next_slot) == 2 else 1
+            # Estimasi slot = jumlah 3 hari order window
+            units = round(cfg["base"][base_idx] * 3 * 1.02 + noise(2), 4)
+            total_slot_units += units
+            slot_demand.append({"sku_id": sku_id, "forecast_units": round(units, 4)})
+
+        data["forecast_slot"] = {
+            "schema_version": 1,
+            "model": "XGBoost",
+            "model_version": "tewiwi-xgb-h2-demo-v1",
+            "is_simulation": True,
+            "delivery_date": next_slot.isoformat(),
+            "slot_forecast_origin": origin.isoformat(),
+            "order_window_start": order_window_start.isoformat(),
+            "order_window_end": order_window_end.isoformat(),
+            "order_cutoff_days": 2,
+            "daily_forecast_horizon_days": 2,
+            "order_days_forecasted": 3,
+            "sku_count": len(SKU_CONFIG),
+            "demand_by_sku": slot_demand,
+        }
         print(f"forecast_h2: origin={origin}, target={next_slot}")
+        print(f"forecast_slot: delivery={next_slot}, total≈{round(total_slot_units,1)} unit")
 
     ARTIFACT_PATH.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')), encoding="utf-8")
     print(f"✓ Artifact disimpan: {ARTIFACT_PATH}")
